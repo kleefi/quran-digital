@@ -34,16 +34,15 @@ listAyat.addEventListener('change', event => {
     fetch('https://api.npoint.io/99c279bb173a6e28359c/surat/' + event.target.value)
         .then(respon => respon.json())
         .then(json => {
-            let li = '';
-            // json.map(resp => li += `<li class="list-group-item">${resp.ar}</li></li>`);
-            json.map(resp => li += showData(resp));
-            const ul = document.querySelector('.arab');
-            ul.innerHTML = li;
+            console.log(json)
+            json.map(resp => {
+                const ul = document.querySelector('.arab');
+                ul.innerHTML += `<li class="list-group-item">${resp.ar}</li></li>`;
+            });
         });
-})
+
+});
 
 function showData(ayat) {
-    return `
-    <li class="list-group-item">${ayat.ar}</li>
-    <p>${ayat.id}</p>`
+    return `<li class="list-group-item">${ayat.ar}</li></li>`
 }
